@@ -11,7 +11,6 @@ use App\Http\Controllers\CouponsController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\admin\ItemsController;
-use App\Http\Controllers\admin\SizesController;
 use App\Http\Controllers\admin\AdminsController;
 use App\Http\Controllers\admin\ShippingController;
 use App\Http\Controllers\admin\AdminHomeController;
@@ -30,6 +29,16 @@ use App\Http\Controllers\admin\CategoriesController;
 
 // Laravel Bar
 Debugbar::info('info');
+
+Auth::routes();
+
+
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'ar'])) {
+        session()->put('locale', $locale);
+    }
+    return redirect()->back();
+})->name('LangConverter');
 
 
 // Protected Routs
@@ -113,21 +122,10 @@ Route::middleware(['auth:web'])->group(function () {
 
     // orders
     Route::get('admin/dashboard/orders', [OrdersController::class, 'index'])->name('admin.dashboard.orders');
-
 });
 
 
 // Auth routs
-Auth::routes();
-
-
-Route::get('lang/{locale}', function ($locale) {
-    if (in_array($locale, ['en', 'ar'])) {
-        session()->put('locale', $locale);
-    }
-    return redirect()->back();
-})->name('LangConverter');
-
 
 //Home
 Route::get('/', [HomePageController::class, 'index'])->name('home.page');
