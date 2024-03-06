@@ -177,8 +177,8 @@ class CartController extends Controller
     {
         // dd($couponCode); // Comment out or remove this line
         $checkCoupon = Coupons::where('coupon_code', $couponCode)
-            ->where('expiry_date', '>', now())
-            ->where('status', 1)
+        ->where('expiry_date', '>', now()) // Use now() instead of Coupons::now()
+        ->where('status', 1)
             ->first();
 
         return $checkCoupon;

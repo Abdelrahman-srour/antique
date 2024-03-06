@@ -71,9 +71,6 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('admin/dashboard/coupons/apply', [CouponsController::class, 'apply'])->name('admin.dashboard.coupon.apply');
 
 
-    // commission
-
-
     // Shipping
     Route::get('/shopping-cart', [ShippingController::class, 'index']);
     Route::get('admin/dashboard/shipping', [ShippingController::class, 'edit'])->name('admin.dashboard.shipping');
@@ -92,8 +89,6 @@ Route::middleware(['auth:web'])->group(function () {
     Route::put('admin/dashboard/users/{id}/admin', [UserController::class, 'updateAdmin'])->name('admin.dashboard.users.updateAdmin');
     Route::put('admin/dashboard/users/{id}/moderator', [UserController::class, 'updateModerator'])->name('admin.dashboard.users.updateModerator');
     Route::get('admin/layouts/pages-layout', [CategoriesController::class, 'index'])->name('admin.layouts.pages-layout');
-
-
 
 
     // categories
